@@ -1,10 +1,7 @@
-/_build
-/cover
-/deps
-/doc
-/.fetch
-erl_crash.dump
-*.ez
-*.beam
-/config/*.secret.exs
-.elixir_ls/
+.vscode
+server/.nox
+server/__pycache__
+server**/__pycache__
+server/src/static
+**/.env
+**/nodemodules

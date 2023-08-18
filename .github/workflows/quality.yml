@@ -1,0 +1,39 @@
+name: Quality
+on:
+  push:
+    branches-ignore:
+      - main
+
+jobs:
+  lint_server:
+    concurrency:
+      group: ${{ github.ref }}_lint_server
+      cancel-in-progress: true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: excitedleigh/setup-nox@v2.0.0
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+            filters: |
+              server:
+                - 'server/**'
+      - if: steps.changes.outputs.server == 'true'
+        run: cd server && nox -s lint
+  test_server:
+    concurrency:
+      group: ${{ github.ref }}_test_server
+      cancel-in-progress: true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: excitedleigh/setup-nox@v2.0.0
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+            filters: |
+              server:
+                - 'server/**'
+      - if: steps.changes.outputs.server == 'true'
+        run: cd server && nox -s tests

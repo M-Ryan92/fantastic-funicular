@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "csp_server"
+version = "0.1.0"
+description = ""
+authors = ["michel <michel.dolstra@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flask = "^2.3.2"
+python-dotenv = "^1.0.0"
+requests = "^2.31.0"
+nox = "^2023.4.22"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
