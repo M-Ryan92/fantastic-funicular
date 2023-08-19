@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ReactElement } from 'react';
+import { Box, Grommet, Header, Text } from 'grommet';
+import { ProcessForm } from './ProcessForm';
+import { theme } from './theme';
 
-function App() {
+type AppBarProps = {
+  children?: ReactElement;
+};
+const AppBar = (props: AppBarProps): ReactElement => (
+  <Header
+    background="brand"
+    pad={{ left: 'medium', right: 'small', vertical: 'small' }}
+    elevation="medium"
+    {...props}
+  />
+);
+
+export const App = (): ReactElement => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <Grommet theme={theme} full background={'accent-3'}>
+      <AppBar>
+        <Text size="large">Customer Statement Processor</Text>
+      </AppBar>
 
-export default App;
+      <Box direction="row" flex overflow={{ horizontal: 'hidden' }}>
+        <Box
+          flex
+          align="center"
+          justify="center"
+          margin={{ top: '5rem', bottom: '5rem' }}
+        >
+          <ProcessForm></ProcessForm>
+        </Box>
+      </Box>
+    </Grommet>
+  );
+};

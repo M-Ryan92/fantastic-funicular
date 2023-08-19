@@ -5,6 +5,21 @@ on:
       - main
 
 jobs:
+  lint_client:
+    concurrency:
+      group: ${{ github.ref }}_lint_client
+      cancel-in-progress: true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+            filters: |
+              client:
+                - 'client/**.{js,jsx,ts,tsx,json}'
+      - if: steps.changes.outputs.client == 'true'
+        run: cd client && yarn && yarn lint
   lint_server:
     concurrency:
       group: ${{ github.ref }}_lint_server
