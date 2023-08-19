@@ -1,9 +1,6 @@
 import redis
 
 
-from dataclasses import dataclass
-
-
 class RedisClient:
     redis_client: object
 

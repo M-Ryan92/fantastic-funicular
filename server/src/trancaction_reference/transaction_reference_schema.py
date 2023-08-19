@@ -1,5 +1,7 @@
 from decimal import Decimal
 from dataclasses import dataclass
+import dataclasses
+import json
 
 
 @dataclass
@@ -10,3 +12,6 @@ class TransactionReferenceSchema:
     start_balance: Decimal
     mutation: Decimal
     end_balance: Decimal
+
+    def to_dict(self):
+        return dataclasses.asdict(self)
