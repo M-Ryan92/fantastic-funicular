@@ -15,13 +15,15 @@
   3. run `nvm install 19.7.0`
   
   ### running the server
-  1. cd into the `server` directory
-  2. cp example.env .env
-  3. run `pyenv install` to install the project dependencies
-  4. run `poetry run flask run` to spin up the server
+  1. run `docker-compose up -d` this will start our redis server.
+  2. cd into the `server` directory
+  3. cp example.env .env
+  4. run `pyenv install` to install the project dependencies
+  5. run `poetry run flask run` to spin up the server
 
   ### running the frontend
   1. cd into the `client` directory
   2. cp example.env .env
-  2. run `yarn install && yarn build`
-  3. run `yarn start`
+  3. run `yarn install && yarn build`
+  4. run `yarn start`
+  5. browser opens up the client running on port 3000

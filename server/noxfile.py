@@ -24,7 +24,6 @@ def lint(session):
     if "--fix" in session.posargs:
         session.run("black", ".")
     else:
-        # TODO: maybe let pycodestyle return the errors?
         session.run("black", ".", "--check")
 
     session.run("pycodestyle", ".", "--exclude=.nox/*")
