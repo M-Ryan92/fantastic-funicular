@@ -25,7 +25,7 @@ class Validator:
         self.is_valid_endbalance = self.__determine_valid_endbalance(schema)
         self.is_unique_reference = self.__determine_unique_reference(client, schema)
 
-    def is_invalid(self):
+    def is_valid(self):
         return self.is_valid_endbalance & self.is_unique_reference
 
     def to_dict(self):

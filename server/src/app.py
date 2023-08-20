@@ -35,6 +35,7 @@ def flushdb():
     """for testing and demo purpose"""
     client = RedisClient(REDIS_CONFIG)
     client.flushdb()
+    return jsonify({"code": 200, "message": "redis flushDB executed"})
 
 
 @app.route("/api/process_file/", methods=["POST"])
@@ -49,11 +50,10 @@ def process_file():
     for row in reader:
         schema = to_transaction_reference(row)
         validated = Validator(client, schema)
-        # TODO: decide if we return everything or just the errors.
-        # if validated.is_invalid()
-        records.append(validated.to_dict())
 
-    # time.sleep(10)
+        if not validated.is_valid():
+            records.append(validated.to_dict())
+
     return jsonify({"response": records})
 
 
