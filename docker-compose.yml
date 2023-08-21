@@ -1,12 +1,35 @@
 version: "3.7"
 
 services:
+  csp:
+    image: csp:production
+    environment:
+      - FLASK_APP=src.app
+      - FLASK_ENV='production'
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - FLASK_DEBUG=1
+      - WEBPACK_DEV_SERVER_HOST=''
+    build:
+      context: .
+      dockerfile: dockerbuild/Dockerfile
+    command: ["poetry", "run", "flask", "run", "--host=0.0.0.0"]
+    restart: on-failure
+    tty: true
+    depends_on:
+      - redis
+    ports:
+      - 5000:5000
+    networks:
+    - backend
   redis:
     image: redis
     restart: on-failure
     command: [ "redis-server", "--appendonly", "yes" ]
     networks:
-      - backend
+      backend:
+        aliases:
+          - redis
     volumes:
       - datadir-redis:/data
     ports:
