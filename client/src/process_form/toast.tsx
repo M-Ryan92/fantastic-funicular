@@ -22,11 +22,11 @@ const codetoTheme = (code: number): keyof Theme => {
 }
 
 export const Toast = ({ data, setToastData }:ToastProps): ReactElement | null => {
-  if (!data) return null;
-
   useEffect(() => {
     setTimeout(() => setToastData(null), 1500)
   }, [data])
+
+  if (!data) return null;
 
   return (
     <Box
