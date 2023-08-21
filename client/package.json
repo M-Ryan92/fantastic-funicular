@@ -24,7 +24,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "BUILD_PATH='../server/src/static react-scripts build",
+    "build": "BUILD_PATH='../server/src/static' react-scripts build",
+    "build:server": "react-scripts build",
     "lint": "tsc --noEmit && eslint src/**/*.ts{,x} --cache --max-warnings=0",
     "lint:fix": "eslint src/**/*.ts{,x} --fix",
     "test": "react-scripts test",
