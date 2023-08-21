@@ -17,7 +17,7 @@
 
 ### docker setup
   1. run `docker-compose up -d` this will build and run the project and redis.
-  2. visit `localhost:5000`
+  2. visit `localhost:5000/app`
 
   **sidenote:** development images not supported yet
 ### local setup
